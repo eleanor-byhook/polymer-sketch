@@ -1,4 +1,5 @@
 <link rel="import" href="../../bower_components/polymer/polymer.html">
+<link rel="import" href="../../bower_components/iron-ajax/iron-ajax.html">
 <link rel="import" href="../my-polymer-element/my-polymer-element.html">
 
 <dom-module id="my-polymer-app-app">
@@ -28,11 +29,20 @@
       }
 
     </style>
+
+    <iron-ajax
+      auto
+      url="../../example.json"
+      handle-as="json"
+      last-response="{{data}}"
+      on-response="handleResponse" >
+      </iron-ajax>
+
     <h2 id="title">Search Results</h2>
         <p id="description">We found [[number]] matching [[resultWord]] for
         [[SearchQuery]]</p>
 
-        <template is="dom-repeat" items="{{data}}">
+        <template is="dom-repeat" items="{{arrayData}}">
           <my-polymer-element 
             image-source=[[item.imageSource]]
             couple-name=[[item.Couple]] 
@@ -47,42 +57,41 @@
 
       is: 'my-polymer-app-app',
 
-      ready: function() {
-        this.data = [
-          {
-            imageSource: "src/my-polymer-app-app/homerandmarge.jpg",
-            Couple: ["Homer Simpson", "Marge Bouvier"],
-            date: "October 16th, 2016"
-          },
-          {
-            imageSource: "src/my-polymer-app-app/jackieAristotle.png",
-            Couple: ["Aristotle Onassis", "Jaqueline Kennedy"],
-            date: "November 2nd, 2017"
-          },
-          {
-            imageSource: "src/my-polymer-app-app/brangelina.jpg",
-            Couple: ["Brad Pitt", "Angelina Jolie"],
-            date: "January 3rd, 2017"
-          }
-        ]
-      },
-
       properties: {
-        obj: {
+        data: {
           type: Object
         },
+
+        arrayData: {
+          type: Array
+        },
+
         number: {
           type: Number,
           value: 3
         },
+
         resultWord: {
           type: String,
           computed: 'resultPluralOrNot(number)'
         },
+
         SearchQuery: {
           type: String,
           value: 'Bouvier'
         }
+      },
+
+      formatData: function(data) {
+        var arr = [];
+        for(var item in data){
+          arr.push(data[item])
+        }
+        return arr;
+      },
+
+      handleResponse: function() {
+        this.arrayData = this.formatData(this.data);
       },
 
       resultPluralOrNot: function(number) {

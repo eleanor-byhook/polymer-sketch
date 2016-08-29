@@ -1,0 +1,19 @@
+{
+  "abc": {
+    "imageSource": "src/my-polymer-app-app/homerandmarge.jpg",
+    "Couple": ["Homer Simpson", "Marge Bouvier"],
+    "date": "October 16th, 2016"
+  },
+  "def": {
+    "imageSource": "src/my-polymer-app-app/jackieAristotle.png",
+    "Couple": ["Aristotle Onassis", "Jaqueline Kennedy"],
+    "date": "November 2nd, 2017"
+  },
+  "ghi": {
+    "imageSource": "src/my-polymer-app-app/brangelina.jpg",
+    "Couple": ["Brad Pitt", "Angelina Jolie"],
+    "date": "January 3rd, 2017"
+  }
+}
+
+

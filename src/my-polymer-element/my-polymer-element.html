@@ -1,4 +1,4 @@
-<link rel="import" href="../polymer/polymer.html">
+<link rel="import" href="../../bower_components/polymer/polymer.html">
 
 <!--
 `my-polymer-element`
@@ -25,7 +25,8 @@ A single item for the dominos registry.
         color: rgb(71,98,143);
       }
 
-      #photo {
+      #photo { /* TODO: Update so rectangular images are processed to be
+        cropped centered squares */
         height: 55%;
         align-self: center;
         border-radius: 50%;
@@ -110,7 +111,7 @@ A single item for the dominos registry.
       is: 'my-polymer-element',
 
       properties: {
-       imageSource: {
+        imageSource:{ 
           type: String
        },
 
