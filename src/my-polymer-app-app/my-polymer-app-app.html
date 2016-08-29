@@ -1,0 +1,78 @@
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+<link rel="import" href="../my-polymer-element/my-polymer-element.html">
+
+<dom-module id="my-polymer-app-app">
+  <template>
+    <style>
+      :host {
+        display: flex;
+        flex-direction: column;
+        background-color: rgb(246,246,246);
+      }
+      #title {
+        color: rgb(71,98,143);
+        font-size: 25px;
+        margin: 0;
+        font-family: cursive;
+        text-align: center;
+      }
+      #description {
+        font-size: 13px;
+        color: black;
+        padding: 0 30%;
+        text-align: center;
+        margin: 0;
+      }
+
+    </style>
+    <h2 id="title">Search Results</h2>
+        <p id="description">We found [[number]] matching [[resultsPlural]] for
+        [[SearchQuery]]</p>
+    <my-polymer-element image-source=[[imageSource]]
+    couple-name=[[Couple]] date=[[date]]></my-polymer-element>
+<my-polymer-element image-source=[[imageSource]]
+    couple-name=[[Couple]] date=[[date]]></my-polymer-element>
+<my-polymer-element image-source=[[imageSource]]
+    couple-name=[[Couple]] date=[[date]]></my-polymer-element>
+
+  </template>
+
+  <script>
+    Polymer({
+
+      is: 'my-polymer-app-app',
+
+      properties: {
+        obj: {
+          type: Object
+        },
+        number: {
+          type: Number,
+          value: 3
+        },
+        resultsPlural: {
+          type: String,
+          value: 'results'
+        },
+        Couple: {
+          type: Array,
+          value: ["Homer Simpson", "Marge Bouvier"]
+        },
+        SearchQuery: {
+          type: String,
+          value: 'Bouvier'
+        },
+        imageSource: {
+          type: String,
+          value: "src/my-polymer-element/nyancat.jpeg"
+        },
+        date: {
+          type: String,
+          value: " October 16th, 2016"
+        }
+
+      },
+
+    });
+  </script>
+</dom-module>

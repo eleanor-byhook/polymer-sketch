@@ -1,0 +1,136 @@
+<link rel="import" href="../polymer/polymer.html">
+
+<!--
+`my-polymer-element`
+A single item for the dominos registry.
+
+@demo demo/index.html 
+-->
+
+<dom-module id="my-polymer-element">
+  <template>
+    <style>
+      :host {
+        display: block;
+        margin: 20px 20px 0 20px;
+      }
+
+      #container {
+        display: flex;
+        justify-content: space-between;
+        border: 1px solid #dddddd;
+        width: 100%;
+        height: 100px;
+        background-color: white;
+        color: rgb(71,98,143);
+      }
+
+      #photo {
+        height: 55%;
+        align-self: center;
+        border-radius: 50%;
+        padding: 5%;
+      }
+
+      #textContainer {
+        display: flex;
+        flex-direction: column;
+        flex: 2;
+        justify-content: center;
+      }
+
+      #coupleName {
+        font-size: 0.8em;
+        font-family: Palatino;
+        line-height: 1.3em;
+      }
+
+      hr {
+        width: 17%;
+        background-color: rgb(71,98,143);
+        margin: 4px 0;
+        border: 0;
+        height: 1px;
+      }
+
+      #dateContainer {
+        display: flex;
+        align-items: baseline;
+        color: black;
+      }
+
+      #dateLable {
+        font-weight: bold;
+        font-size: 0.5rem;
+        font-family: Tahoma;
+        font-weight: bold;
+      }
+
+      #date {
+        font-size: 0.7rem;
+        font-family: sans;
+        text-align: center;
+      }
+
+      #nextArrow {
+        align-self: center;
+      }
+
+      #arrow {
+        width: 25px;
+        margin-right: 4px;
+      }
+
+    </style>
+
+    <div id="container">
+
+      <img id="photo" src="[[imageSource]]">
+
+      <div id="textContainer">
+        <div id="coupleName">
+          {{partnerOne}}
+          <br>
+          & {{partnerTwo}}
+        </div>
+        <hr>
+        <div id="dateContainer">
+          <div id="dateLable">Wedding Date: </div>
+          <div id="date">&nbsp;[[date]]</div>
+        </div>
+      </div>
+      <div id="nextArrow"><img id="arrow" src="./rightArrow.png"></div>
+    </div>
+
+  </template>
+
+  <script>
+    Polymer({
+
+      is: 'my-polymer-element',
+
+      properties: {
+       imageSource: {
+          type: String
+       },
+
+       coupleName: {
+         type: Array
+       },
+       partnerOne: {
+         type: String,
+         computed: 'partnerName(coupleName, 0)'
+       },
+       partnerTwo: {
+         type: String, 
+         computed: 'partnerName(coupleName, 1)'
+       },
+      },
+
+      partnerName: function(coupleName, index) {
+        return coupleName[index];
+      }
+
+    });
+  </script>
+</dom-module>
