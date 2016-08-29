@@ -1,6 +1,7 @@
 # \<my-polymer-app\>
 
-a polymer app that I made
+A basic polymer element that renders a collection data through a dom-repeat.
+Currently styled for mobile (portrait) only.
 
 ## Install the Polymer-CLI
 
