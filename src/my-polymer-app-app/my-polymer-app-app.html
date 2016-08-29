@@ -31,12 +31,14 @@
     <h2 id="title">Search Results</h2>
         <p id="description">We found [[number]] matching [[resultWord]] for
         [[SearchQuery]]</p>
-    <my-polymer-element image-source=[[imageSource]]
-    couple-name=[[Couple]] date=[[date]]></my-polymer-element>
-<my-polymer-element image-source=[[imageSource]]
-    couple-name=[[Couple]] date=[[date]]></my-polymer-element>
-<my-polymer-element image-source=[[imageSource]]
-    couple-name=[[Couple]] date=[[date]]></my-polymer-element>
+
+        <template is="dom-repeat" items="{{data}}">
+          <my-polymer-element 
+            image-source=[[item.imageSource]]
+            couple-name=[[item.Couple]] 
+            date=[[item.date]]>
+          </my-polymer-element>
+        </template>
 
   </template>
 
@@ -44,6 +46,26 @@
     Polymer({
 
       is: 'my-polymer-app-app',
+
+      ready: function() {
+        this.data = [
+          {
+            imageSource: "src/my-polymer-app-app/homerandmarge.jpg",
+            Couple: ["Homer Simpson", "Marge Bouvier"],
+            date: "October 16th, 2016"
+          },
+          {
+            imageSource: "src/my-polymer-app-app/jackieAristotle.png",
+            Couple: ["Aristotle Onassis", "Jaqueline Kennedy"],
+            date: "November 2nd, 2017"
+          },
+          {
+            imageSource: "src/my-polymer-app-app/brangelina.jpg",
+            Couple: ["Brad Pitt", "Angelina Jolie"],
+            date: "January 3rd, 2017"
+          }
+        ]
+      },
 
       properties: {
         obj: {
@@ -57,23 +79,10 @@
           type: String,
           computed: 'resultPluralOrNot(number)'
         },
-        Couple: {
-          type: Array,
-          value: ["Homer Simpson", "Marge Bouvier"]
-        },
         SearchQuery: {
           type: String,
           value: 'Bouvier'
-        },
-        imageSource: {
-          type: String,
-          value: "src/my-polymer-element/nyancat.jpeg"
-        },
-        date: {
-          type: String,
-          value: " October 16th, 2016"
         }
-
       },
 
       resultPluralOrNot: function(number) {
