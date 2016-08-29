@@ -68,7 +68,6 @@
 
         number: {
           type: Number,
-          value: 3
         },
 
         resultWord: {
@@ -92,6 +91,7 @@
 
       handleResponse: function() {
         this.arrayData = this.formatData(this.data);
+        this.number = this.arrayData.length;
       },
 
       resultPluralOrNot: function(number) {
