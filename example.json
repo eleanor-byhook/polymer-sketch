@@ -13,5 +13,20 @@
     "imageSource": "src/my-polymer-app-app/angelinaAndBrad2.jpg",
     "Couple": ["Brad Pitt", "Angelina Jolie"],
     "date": "January 3rd, 2017"
+  },
+  "PQR": {
+    "imageSource": "src/my-polymer-app-app/homerandmarge.jpg",
+    "Couple": ["Homer Jay", "Marge Simpson"],
+    "date": "December 16th, 2016"
+  },
+  "MNO": {
+    "imageSource": "src/my-polymer-app-app/jackieAristotle.png",
+    "Couple": ["Aristotle Kennedy", "Jaqueline Onassis"],
+    "date": "November 2nd, 2017"
+  },
+  "jkl": {
+    "imageSource": "src/my-polymer-app-app/brangelina.jpg",
+    "Couple": ["Brad Jolie", "Angelina Pitt"],
+    "date": "June 3rd, 2017"
   }
 }

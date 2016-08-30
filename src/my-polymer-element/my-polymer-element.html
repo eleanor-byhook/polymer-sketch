@@ -11,6 +11,7 @@ A single item for the dominos registry.
 <dom-module id="my-polymer-element">
   <template>
     <style>
+    
       :host {
         display: block;
         margin: 15px 15px 0 15px;
@@ -122,6 +123,10 @@ A single item for the dominos registry.
 
       is: 'my-polymer-element',
 
+      listeners: {
+        'down': 'tapToSelect',
+        'up': 'unSelect'
+      },
       properties: {
         imageSource:{
           type: String
@@ -138,6 +143,14 @@ A single item for the dominos registry.
          type: String,
          computed: 'partnerName(coupleName, 1)'
        },
+      },
+
+      unSelect: function(e){
+        this.$.container.style.backgroundColor = "white";
+      },
+
+      tapToSelect: function(e) {
+        this.$.container.style.backgroundColor = "lightgray";
       },
 
       partnerName: function(coupleName, index) {

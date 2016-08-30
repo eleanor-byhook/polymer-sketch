@@ -1,5 +1,6 @@
 <link rel="import" href="../../bower_components/polymer/polymer.html">
 <link rel="import" href="../../bower_components/iron-ajax/iron-ajax.html">
+<link rel="import" href="../../bower_components/app-route/app-route.html">
 <link rel="import" href="../../bower_components/paper-spinner/paper-spinner.html">
 <link rel="import" href="../my-polymer-element/my-polymer-element.html">
 
@@ -11,6 +12,15 @@
         flex-direction: column;
         background-color: rgb(246,246,246);
       }
+      a {
+        text-decoration: none;
+      }
+
+      a:focus, a:active {
+        outline: none !important;
+        -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+      }
+
       #title {
         color: rgb(71,98,143);
         font-size: 25px;
@@ -43,6 +53,17 @@
       }
 
     </style>
+    <app-location
+      route={{route}}
+      use-hash-as-path>
+    </app-location>
+
+    <app-route
+      route="{{route}}"
+      pattern="/:page"
+      data="{{pageData}}"
+      active="{{pageActive}}">
+    </app-route>
 
     <iron-ajax
       auto
@@ -63,11 +84,13 @@
         </div>
 
         <template is="dom-repeat" items="{{arrayData}}">
-          <my-polymer-element
-            image-source=[[item.imageSource]]
-            couple-name=[[item.Couple]]
-            date=[[item.date]]>
-          </my-polymer-element>
+          <a page-data="{{item}}" href="{{item.Couple}}">
+            <my-polymer-element
+              image-source=[[item.imageSource]]
+              couple-name=[[item.Couple]]
+              date=[[item.date]]>
+            </my-polymer-element>
+          </a>
         </template>
   </template>
 
