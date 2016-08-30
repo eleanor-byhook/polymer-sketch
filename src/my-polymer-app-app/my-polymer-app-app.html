@@ -1,5 +1,6 @@
 <link rel="import" href="../../bower_components/polymer/polymer.html">
 <link rel="import" href="../../bower_components/iron-ajax/iron-ajax.html">
+<link rel="import" href="../../bower_components/paper-spinner/paper-spinner.html">
 <link rel="import" href="../my-polymer-element/my-polymer-element.html">
 
 <dom-module id="my-polymer-app-app">
@@ -28,6 +29,19 @@
         margin-bottom: 15px;
       }
 
+      .overlay {
+        position: absolute;
+        top:0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        background: #FFF;
+      }
+
     </style>
 
     <iron-ajax
@@ -35,6 +49,8 @@
       url="../../example.json"
       handle-as="json"
       last-response="{{data}}"
+      loading="{{loading}}"
+      debounce-duration="300"
       on-response="handleResponse" >
       </iron-ajax>
 
@@ -42,14 +58,17 @@
         <p id="description">We found [[number]] matching [[resultWord]] for
         [[SearchQuery]]</p>
 
+        <div class="overlay" hidden$="{{!loading}}">
+          <paper-spinner active="{{loading}}"></paper-spinner>
+        </div>
+
         <template is="dom-repeat" items="{{arrayData}}">
-          <my-polymer-element 
+          <my-polymer-element
             image-source=[[item.imageSource]]
-            couple-name=[[item.Couple]] 
+            couple-name=[[item.Couple]]
             date=[[item.date]]>
           </my-polymer-element>
         </template>
-
   </template>
 
   <script>
@@ -57,7 +76,23 @@
 
       is: 'my-polymer-app-app',
 
+      observers: [
+          '_lockScroll(loading)'
+      ],
+
+      _lockScroll: function(loading) {
+        if(loading){
+          document.body.style.overflow = "hidden";
+        } else {
+          document.body.style.overflow = "visible";
+        }
+      },
+
       properties: {
+        loading: {
+          type: Boolean,
+          value: true
+        },
         data: {
           type: Object
         },
@@ -92,6 +127,7 @@
       handleResponse: function() {
         this.arrayData = this.formatData(this.data);
         this.number = this.arrayData.length;
+        console.log(this.loading);
       },
 
       resultPluralOrNot: function(number) {
